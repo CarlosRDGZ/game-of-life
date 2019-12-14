@@ -1,4 +1,4 @@
-name: Game of life
+name: Game of life tests
 
 on: [push]
 
@@ -15,5 +15,4 @@ jobs:
         python-version: 3.6
     - name: Test with unittest
       run: |
-        ls
         python test.py
