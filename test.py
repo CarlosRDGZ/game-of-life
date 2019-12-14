@@ -118,3 +118,7 @@ class TestCellState(unittest.TestCase):
         self.assertEqual(False, game.should_live(1, 1, cells), "Should stay dead")
         cells[0][0] = True
         self.assertEqual(False, game.should_live(1, 1, cells), "Should die")
+
+
+if __name__ == '__main__':
+    unittest.main()
