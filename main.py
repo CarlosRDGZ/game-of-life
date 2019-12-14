@@ -1,5 +1,10 @@
-ROWS = 10
-COLUMNS = 10
+import os
+import time
+import random
+
+ROWS = 20
+COLUMNS = 20
+random.seed(1)
 
 
 def create_cells(rows, columns):
@@ -50,14 +55,37 @@ def should_live(cell_row, cell_col, cells):
     return False
 
 
-def main():
-    cells = create_cells(ROWS, COLUMNS)
-    get_number_of_neighbors(4, 4, cells)
+def big_bang(cells):
+    total_live_cells = ROWS * COLUMNS / 2
+    while total_live_cells > 0:
+        row = random.randint(0, ROWS - 1)
+        col = random.randint(0, COLUMNS - 1)
+        if not cells[row][col]:
+            cells[row][col] = True
+            total_live_cells -= 1
 
-    for row in cells:
-        for cell in row:
-            print(cell['neighbors'], end='')
-        print()
+
+def main():
+    current_cells = create_cells(ROWS, COLUMNS)
+    future_cells = create_cells(ROWS, COLUMNS)
+
+    big_bang(current_cells)
+
+    while True:
+        os.system('clear')
+
+        for row in range(ROWS):
+            for col in range(COLUMNS):
+                future_cells[row][col] = should_live(row, col, current_cells)
+
+        for row in current_cells:
+            for cell in row:
+                print(' • ' if cell else '   ', end='')
+            print()
+
+        current_cells, future_cells = future_cells, current_cells
+
+        time.sleep(1)
 
 
 if __name__ == '__main__':
