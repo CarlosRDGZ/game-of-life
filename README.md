@@ -6,10 +6,10 @@ This was created using Python 3.6.
 
 ## Running locally
 ```
-python main
+python main.py
 ```
 
 ## Running unit tests locally
 ````
-python test 
+python test.py
 ````
