@@ -16,4 +16,4 @@ jobs:
     - name: Test with unittest
       run: |
         ls
-        python test
+        python test.py
